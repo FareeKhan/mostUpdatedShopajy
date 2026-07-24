@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "rnscreens_autolinked_build",
+		"source" : "/Users/fareedkhan/Desktop/Project/shopjy/shopijy/node_modules/react-native-screens/android/src/main/jni"
+	}
+}

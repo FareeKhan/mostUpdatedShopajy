@@ -1,0 +1,17 @@
+# Dependencies & Builds
+node_modules/
+vendor/
+.expo/
+dist/
+build/
+
+# Native Builds
+ios/Pods/
+ios/build/
+android/app/build/
+android/.gradle/
+android/build/
+
+# Archives & System
+*.zip
+.DS_Store
