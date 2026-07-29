@@ -62,6 +62,8 @@ export const colors = {
   gray32: '#EFF1F3',
   gray33: '#667080',
   gray34: '#5A6C84',
+  gray35: '#5A6C8440',
+  tranparent: '#F7FAFD1A',
 
 
   lightPink: "#FAFAFA",

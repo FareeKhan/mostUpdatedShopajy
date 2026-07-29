@@ -13,7 +13,7 @@ const QuantityCounter = ({ counter, setCounter }) => {
         }
 
     }
-    
+
     const handleIncrement = () => {
         setCounter(counter + 1)
     }
@@ -22,12 +22,13 @@ const QuantityCounter = ({ counter, setCounter }) => {
         <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <TitleViewAll title={'quantity'} xxxl semiBold mv={false} />
 
-            <View style={{ flexDirection: "row", alignItems: "center", gap: 12, borderWidth: 1, paddingVertical: 8, paddingHorizontal: 12, borderColor: colors.gray5, borderRadius: 5 }}>
-                <TouchableOpacity onPress={handleDecrement}>
+            <View style={{ flexDirection: "row", alignItems: "center", gap: 15, borderWidth: 1, paddingVertical: 6, paddingHorizontal: 6, borderColor: colors.gray35, borderRadius: 7 }}>
+                <TouchableOpacity onPress={handleDecrement} style={{ width: 35, height: 35, backgroundColor: colors.gray35, alignItems: "center", justifyContent: "center" }}>
                     <Feather name={'minus'} size={20} color={colors.black} />
                 </TouchableOpacity>
-                <CustomText>{counter}</CustomText>
-                <TouchableOpacity onPress={handleIncrement}>
+                <CustomText bold style={{ fontSize: 17 }}>{counter}</CustomText>
+
+                <TouchableOpacity onPress={handleIncrement} style={{ width: 35, height: 35, backgroundColor: colors.gray35, alignItems: "center", justifyContent: "center" }}>
                     <Feather name={'plus'} size={20} color={colors.black} />
                 </TouchableOpacity>
             </View>

@@ -500,6 +500,20 @@
 "mismatch": "Mismatch",
 "passwordsDoNotMatch": "Passwords do not match",
 "proceed": "Proceed",
+     "Home Delivery":"Home Delivery",
+          "Delivery To Your Door":"Delivery To Your Door",
+          "businessDay":"1 - 2 Business Days",
+          "Shipping Fee":"Shipping Fee",
+          "Al Qadmous Shipping":"Al Qadmous Shipping",
+          "Pickup from the nearest Al Qadmous branch":"Pickup from the nearest Al Qadmous branch",
+          "business days":"3-5 business days",
+          "Shipping fee is paid directly to Al Qadmous upon pickup.":"Shipping fee is paid directly to Al Qadmous upon pickup.",
+          "Shipping fee varies by area and weight.":"Shipping fee varies by area and weight.",
+          "companyPickup":"he shipping fee for Al Qadmous is not included in your order total and will be paid to the shipping company at pickup.",
+           "Choose Address":"Choose Address",
+  "Shipping And Delivery":"Shipping And Delivery",
+  "Available Shipping Methods":"Available Shipping Methods",
+          
 
 
 

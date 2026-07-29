@@ -83,6 +83,7 @@ const LoginScreen = ({ navigation }) => {
                     value={password}
                     onChangeText={setPassword}
                     isEye={isEye}
+                    maxLength={20}
                     onPressEye={() => setIsEye(!isEye)}
                 />
 
@@ -135,7 +136,7 @@ const LoginScreen = ({ navigation }) => {
             <BottomSocialIcon
                 showCopyrightText={false}
                 mt
-            /> 
+            />
 
         </CustomScreenView>
     )

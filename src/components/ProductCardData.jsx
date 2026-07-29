@@ -57,10 +57,10 @@ const ProductCardData = ({ data }) => {
 
     const renderItem = ({ item, index }) => {
         const isFavorite = favoriteItems?.some((i) => i?.id == item?.id)
-    const percentage =
-  item?.price > 0 && item?.discount_price != null
-    ? Math.round(((Number(item.price) - Number(item.discount_price)) / Number(item.price)) * 100)
-    : 0;
+        const percentage =
+            item?.price > 0 && item?.discount_price != null
+                ? Math.round(((Number(item.price) - Number(item.discount_price)) / Number(item.price)) * 100)
+                : 0;
 
         return (
             <TouchableOpacity style={styles.cardWrapper} activeOpacity={0.7} onPress={() => navigation.navigate('ProductDetailScreen', {
@@ -82,7 +82,7 @@ const ProductCardData = ({ data }) => {
                         ]}>
                             <CustomText xs medium style={{
                                 color: item?.is_new ? colors.black : colors.white,
-                                textTransform:"capitalize"
+                                textTransform: "capitalize"
                             }}>
                                 {item?.tag}
                             </CustomText>
@@ -98,7 +98,7 @@ const ProductCardData = ({ data }) => {
                             <CustomText xs medium style={{
                                 color: colors.white
                             }}
-                            translate={false}
+                                translate={false}
                             >
                                 {percentage}%
                             </CustomText>
@@ -130,19 +130,25 @@ const ProductCardData = ({ data }) => {
 
                     <BorderLine centerLine style={styles.borderLine} />
 
-                    <View style={styles.ratingRow}>
-                        <StarRating
-                            rating={parseInt(item?.rating)}
-                            starSize={18}
-                            starStyle={{ marginHorizontal: 0 }}
-                            enableSwiping={false}
-                            disabled={true}
-                            onChange={() => { }}
-                        />
-                        <CustomText xxs translate={false}>
-                            ({item?.review_count})
-                        </CustomText>
-                    </View>
+
+                    {
+                        item?.rating &&
+                        <View style={styles.ratingRow}>
+                            <StarRating
+                                rating={parseInt(item?.rating)}
+                                starSize={18}
+                                starStyle={{ marginHorizontal: 0 }}
+                                enableSwiping={false}
+                                disabled={true}
+                                onChange={() => { }}
+                            />
+                            <CustomText xxs translate={false}>
+                                ({item?.review_count})
+                            </CustomText>
+                        </View>
+
+                    }
+
 
 
 
@@ -179,6 +185,11 @@ const ProductCardData = ({ data }) => {
                         }
 
                     </View>
+
+                    {
+                        !item?.rating && <View style={{ height: 20 }} />
+                    }
+
 
                 </View>
             </TouchableOpacity>

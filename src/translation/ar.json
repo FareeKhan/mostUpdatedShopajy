@@ -488,7 +488,23 @@
 
 "Address": "العنوان",
   "Complete":"إتمام الطلب",
-  "proceed": "متابعة"
+  "proceed": "متابعة",
+
+
+  "Home Delivery": "التوصيل للمنزل",
+  "Delivery To Your Door": "التوصيل إلى باب منزلك",
+  "businessDay": "1 - 2 أيام عمل",
+  "Shipping Fee": "رسوم الشحن",
+  "Al Qadmous Shipping": "شحن القدموس",
+  "Pickup from the nearest Al Qadmous branch": "الاستلام من أقرب فرع للقدموس",
+  "business days": "3-5 أيام عمل",
+  "Shipping fee is paid directly to Al Qadmous upon pickup.": "تدفع رسوم الشحن مباشرة للقدموس عند الاستلام.",
+  "Shipping fee varies by area and weight.": "تختلف رسوم الشحن حسب المنطقة والوزن.",
+  "companyPickup": "رسوم الشحن لشركة القدموس غير مشمولة في إجمالي الطلب وتدفع لشركة الشحن عند الاستلام.",
+  "Choose Address": "اختر العنوان",
+  "Shipping And Delivery": "الشحن والتوصيل",
+  "Available Shipping Methods": "طرق الشحن المتاحة",
+  "Default": "الافتراضي",
 
 
 

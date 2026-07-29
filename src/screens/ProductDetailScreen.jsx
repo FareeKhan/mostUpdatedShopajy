@@ -520,6 +520,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
 
                 <View style={{ marginTop: 10, alignItems: "flex-end" }}>
                     {
+                        product?.review_count && 
 
                         <View style={{
                             flexDirection: "row",

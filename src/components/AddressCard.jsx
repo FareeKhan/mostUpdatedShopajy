@@ -1,39 +1,54 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import CustomScreenView from '../components/CustomScreenView'
-import HeaderBox from '../components/HeaderBox'
-import TitleViewAll from '../components/TitleViewAll'
 import CustomText from '../components/CustomText'
 import { colors } from '../constants/color'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import CustomButton from './CustomButton'
+import { useNavigation } from '@react-navigation/native'
+import { setDefaultAddressRemote } from '../redux/reducers/StoreAddress'
 
 const activeColor = '#0DF6B7'
 const darkTextColor = '#051A31'
-
 
 const AddressSection = ({
     selectedAddressId,
     onSelectAddress
 }) => {
-
+    const navigation = useNavigation()
+    const dispatch = useDispatch()
     const addresses = useSelector(s => s?.address?.address) || []
 
-    const [internalSelectedId, setInternalSelectedId] = useState(addresses[0]?.id)
+    const getDefaultId = (list) => {
+        const defaultItem = list.find(item => item?.is_default)
+        return defaultItem ? defaultItem.id : list[0]?.id
+    }
+
+    const [internalSelectedId, setInternalSelectedId] = useState(() => getDefaultId(addresses))
+
+    useEffect(() => {
+        if (addresses.length > 0) {
+            const currentDefaultId = getDefaultId(addresses)
+            setInternalSelectedId(currentDefaultId)
+        }
+    }, [addresses])
+
     const activeId = selectedAddressId !== undefined ? selectedAddressId : internalSelectedId
 
-    const handlePress = (id) => {
+    const handlePress = async (id) => {
         setInternalSelectedId(id)
         if (onSelectAddress) {
             onSelectAddress(id)
         }
+        // Dispatch set default address remote action
+        try {
+            await dispatch(setDefaultAddressRemote(id))
+        } catch (error) {
+            console.error('Failed to set default address:', error)
+        }
     }
 
     const SingleCardItem = ({ item, isSelected, onSelect }) => {
-
-
-        console.log('ite11111m', item)
-
         const getIcon = (type) => {
             switch (type?.toLowerCase()) {
                 case 'home':
@@ -44,14 +59,6 @@ const AddressSection = ({
                     return 'location-outline'
             }
         }
-
-        const addressDetails = [
-            item?.street,
-            item?.building ? `Bldg. ${item.building}` : null,
-            item?.floor ? `Floor ${item.floor}` : null,
-        ]
-            .filter(Boolean)
-            .join(', ')
 
         return (
             <TouchableOpacity
@@ -74,7 +81,9 @@ const AddressSection = ({
                             <CustomText style={styles.addressType} bold>
                                 {item?.type}
                             </CustomText>
-                            {item?.is_default && (
+                            
+                            {/* Display "Default" badge on whichever card is currently default/selected */}
+                            {isSelected && (
                                 <View style={styles.defaultBadge}>
                                     <CustomText style={styles.defaultBadgeText} bold>Default</CustomText>
                                 </View>
@@ -86,11 +95,14 @@ const AddressSection = ({
                         </CustomText>
 
                         <CustomText style={styles.addressDetailText} semiBold numberOfLines={2} translate={false}>
-                            {item?.building}, {item?.floor}
+                            {item?.building ? `Bldg ${item.building}, ` : ''}{item?.floor ? `Floor ${item.floor}` : ''}
                         </CustomText>
-                         <CustomText style={styles.addressDetailText} semiBold numberOfLines={2} translate={false}>
-                            {item?.phone}
-                        </CustomText>
+                        
+                        {item?.phone && (
+                            <CustomText style={styles.addressDetailText} semiBold numberOfLines={2} translate={false}>
+                                {item?.phone}
+                            </CustomText>
+                        )}
                     </View>
 
                     <View style={styles.iconCircle}>
@@ -114,7 +126,14 @@ const AddressSection = ({
                         onSelect={() => handlePress(item?.id)}
                     />
                 )}
-                contentContainerStyle={{ paddingBottom: 40 }}
+            />
+
+            <CustomButton
+                title={'addAddress'}
+                style={{ backgroundColor: colors.secondary, height: 50, marginBottom: 20 }}
+                leftIcon={<Ionicons name={'location-outline'} color={colors.black} size={20} />}
+                textStyle={{ color: colors.black, fontSize: 15, marginLeft: -7 }}
+                onPress={() => navigation.navigate('AddNewAddressScreen')}
             />
         </View>
     )
@@ -127,12 +146,12 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 15,
     },
-    /* Card Styles */
     cardContainer: {
         width: '100%',
         backgroundColor: colors?.white || '#FFFFFF',
         borderRadius: 20,
-        padding: 16,
+        paddingHorizontal: 16,
+        paddingVertical: 10,
         borderWidth: 1.5,
         borderColor: '#ECF1F6',
         marginBottom: 15,
